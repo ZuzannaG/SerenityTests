@@ -6,6 +6,7 @@ import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -37,7 +38,8 @@ public class DatePickerPage extends PageObject {
     }
 
     public String getDateFromInput() {
-        waitFor(ExpectedConditions.attributeToBeNotEmpty(dateInput, "value"));
+        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        wait.until(ExpectedConditions.attributeToBeNotEmpty(dateInput, "value"));
 
         return dateInput.getAttribute("value");
     }
