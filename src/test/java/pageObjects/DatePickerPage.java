@@ -23,6 +23,7 @@ public class DatePickerPage extends PageObject {
 
     public void select(int day) {
 
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.titleIs("Datepicker | Demoqa"));
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.elementToBeClickable(calendar));
 
         for(WebElementFacade element:allDays) {
