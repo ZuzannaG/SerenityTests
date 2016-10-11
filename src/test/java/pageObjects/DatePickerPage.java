@@ -5,7 +5,6 @@ import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +22,6 @@ public class DatePickerPage extends PageObject {
 
     public void select(int day) {
 
-        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.titleIs("Datepicker | Demoqa"));
         withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.elementToBeClickable(calendar));
 
         for(WebElementFacade element:allDays) {
@@ -37,7 +35,7 @@ public class DatePickerPage extends PageObject {
     }
 
     public void clickDateInput() {
-        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.elementToBeClickable(dateInput));
+        waitABit(10000);
         dateInput.click();
     }
 
