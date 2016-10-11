@@ -4,12 +4,8 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @DefaultUrl("http://demoqa.com/datepicker/")
@@ -26,7 +22,8 @@ public class DatePickerPage extends PageObject {
 
     public void select(int day) {
 
-        calendar.waitUntilVisible();
+        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
+        wait.until(ExpectedConditions.elementToBeClickable(calendar));
 
         for(WebElementFacade element:allDays) {
             int dayValue = Integer.parseInt(element.getText());
