@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @DefaultUrl("http://demoqa.com/datepicker/")
 public class DatePickerPage extends PageObject {
@@ -22,8 +23,7 @@ public class DatePickerPage extends PageObject {
 
     public void select(int day) {
 
-        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
-        wait.until(ExpectedConditions.elementToBeClickable(calendar));
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.elementToBeClickable(calendar));
 
         for(WebElementFacade element:allDays) {
             int dayValue = Integer.parseInt(element.getText());
@@ -36,13 +36,12 @@ public class DatePickerPage extends PageObject {
     }
 
     public void clickDateInput() {
-        dateInput.click();
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.elementToBeClickable(dateInput));
         dateInput.click();
     }
 
     public String getDateFromInput() {
-        WebDriverWait wait = new WebDriverWait(getDriver(), 30);
-        wait.until(ExpectedConditions.attributeToBeNotEmpty(dateInput, "value"));
+        withTimeoutOf(30, TimeUnit.SECONDS).waitFor(ExpectedConditions.attributeToBeNotEmpty(dateInput, "value"));
 
         return dateInput.getAttribute("value");
     }
