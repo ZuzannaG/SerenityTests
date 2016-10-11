@@ -37,6 +37,7 @@ public class DatePickerPage extends PageObject {
 
     public void clickDateInput() {
         dateInput.click();
+        dateInput.click();
     }
 
     public String getDateFromInput() {
