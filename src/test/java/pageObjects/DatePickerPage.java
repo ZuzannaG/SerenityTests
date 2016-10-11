@@ -18,10 +18,15 @@ public class DatePickerPage extends PageObject {
     @FindBy(css = "input[id = 'datepicker1']")
     WebElementFacade dateInput;
 
+    @FindBy(css = "table.ui-datepicker-calendar")
+    WebElementFacade calendar;
+
     @FindBy(xpath = "//table[@class='ui-datepicker-calendar']//td[@data-handler]/a")
     List<WebElementFacade> allDays;
 
     public void select(int day) {
+
+        calendar.waitUntilVisible();
 
         for(WebElementFacade element:allDays) {
             int dayValue = Integer.parseInt(element.getText());
