@@ -14,7 +14,7 @@ public class DatePickerPage extends PageObject {
     @FindBy(css = "input[id = 'datepicker1']")
     WebElementFacade dateInput;
 
-    @FindBy(css = "table.ui-datepicker-calendar")
+    @FindBy(css = "table[class = 'ui-datepicker-calendar']")
     WebElementFacade calendar;
 
     @FindBy(xpath = "//table[@class='ui-datepicker-calendar']//td[@data-handler]/a")
