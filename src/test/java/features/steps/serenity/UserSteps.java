@@ -1,10 +1,7 @@
 package features.steps.serenity;
 
 import net.thucydides.core.annotations.Step;
-import pageObjects.AutocompletePage;
-import pageObjects.DatePickerPage;
-import pageObjects.SelectablePage;
-import pageObjects.SliderPage;
+import pageObjects.*;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,6 +18,7 @@ public class UserSteps {
     SliderPage sliderPage;
     DatePickerPage datePickerPage;
     AutocompletePage autocompletePage;
+    DroppablePage droppablePage;
 
     @Step
     public void opens_selectable_page() {
@@ -103,5 +101,20 @@ public class UserSteps {
     @Step
     public void should_see_in_the_input_field(String value) {
         assertEquals(value, autocompletePage.getInputFieldText());
+    }
+
+    @Step
+    public void opens_droppable_page() {
+        droppablePage.open();
+    }
+
+    @Step
+    public void dragAndDrops_element_into_the_area() {
+        droppablePage.dragAndDropElementIntoArea();
+    }
+
+    @Step
+    public void should_see_the_title_of_the_area_as(String title) {
+        assertEquals(title, droppablePage.getTheTitleOfDroppableArea());
     }
 }
