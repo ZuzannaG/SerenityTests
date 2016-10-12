@@ -1,3 +1,4 @@
+@ignore
 Feature: Datepicker
 
   Scenario: Picking a date
