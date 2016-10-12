@@ -1,6 +1,7 @@
 package features.steps.serenity;
 
 import net.thucydides.core.annotations.Step;
+import pageObjects.AutocompletePage;
 import pageObjects.DatePickerPage;
 import pageObjects.SelectablePage;
 import pageObjects.SliderPage;
@@ -19,6 +20,7 @@ public class UserSteps {
     SelectablePage selectablePage;
     SliderPage sliderPage;
     DatePickerPage datePickerPage;
+    AutocompletePage autocompletePage;
 
     @Step
     public void opens_selectable_page() {
@@ -81,5 +83,25 @@ public class UserSteps {
         assertThat(displayedMonth.equals(currentMonth)
         && displayedDay.equals(String.valueOf(day))
         && displayedYear.equals(currentYear));
+    }
+
+    @Step
+    public void opens_autocomplete_page() {
+        autocompletePage.open();
+    }
+
+    @Step
+    public void inserts_into_the_input_field(String text) {
+        autocompletePage.insertIntoInputField(text);
+    }
+
+    @Step
+    public void clicks_from_the_autocomplete_list(String value) {
+        autocompletePage.selectFromAutocompleteList(value);
+    }
+
+    @Step
+    public void should_see_in_the_input_field(String value) {
+        assertEquals(value, autocompletePage.getInputFieldText());
     }
 }

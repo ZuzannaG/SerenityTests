@@ -24,13 +24,13 @@ public class DatePickerSteps {
 
 
     @And("I select (.*)th day of the current month")
-    public void iSelectThDayOfTheCurrentMonth(int day) {
+    public void iSelectDayOfTheCurrentMonth(int day) {
         user.selects(day);
     }
 
 
     @Then("The (.*)th day of the current month should be in the date input")
-    public void theThDayOfTheCurrentMonthShouldBeInTheDateInput(int day) {
+    public void theDayOfTheCurrentMonthShouldBeInTheDateInput(int day) {
         user.should_see_in_the_date_input(day);
     }
 }
