@@ -3,118 +3,64 @@ package features.steps.serenity;
 import net.thucydides.core.annotations.Step;
 import pageObjects.*;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created by testuser on 07/10/16.
  */
 public class UserSteps {
-
-    SelectablePage selectablePage;
-    SliderPage sliderPage;
-    DatePickerPage datePickerPage;
-    AutocompletePage autocompletePage;
-    DroppablePage droppablePage;
+    HomePage homePage;
+    LoginPage loginPage;
+    MyAccountPage myAccountPage;
 
     @Step
-    public void opens_selectable_page() {
-        selectablePage.open();
+    public void opensHomePage() {
+        homePage.open();
     }
 
     @Step
-    public void selects(String item) {
-        selectablePage.select(item);
+    public void clicksMyAccount() {
+        homePage.clickMyAccount();
     }
 
     @Step
-    public void should_see_selected(String item) {
-        String selectedItem = selectablePage.getSelectedItemName();
-        assertThat(selectedItem.equals(item));
+    public void clicksLogin() {
+        homePage.clickLogin();
     }
 
     @Step
-    public void opens_slider_page() {
-        sliderPage.open();
+    public void isOnLoginPage() {
+        assertTrue(loginPage.isDisplayed());
     }
 
     @Step
-    public void slides_the_slider_by(int offset) {
-        sliderPage.slideBy(offset);
+    public void entersUsername(String username) {
+        loginPage.insertIntoUsernameField(username);
     }
 
     @Step
-    public void should_see_the_amount(int amount) {
-        assertEquals(sliderPage.getCurrentAmount(), amount);
+    public void entersPassword(String password) {
+        loginPage.insertIntoPasswordField(password);
     }
 
     @Step
-    public void opens_datepicker_page() {
-        datePickerPage.open();
+    public void clicksLoginButton() {
+        loginPage.clickLogin();
     }
 
     @Step
-    public void clicks_on_the_date_input() {
-        datePickerPage.clickDateInput();
+    public void isOnMyAccountPage() {
+        assertTrue(myAccountPage.isDisplayed());
     }
 
     @Step
-    public void selects(int day) {
-        datePickerPage.select(day);
+    public void seesHeaderWithText(String text) {
+        assertTrue(myAccountPage.getHeaderText().contains(text));
     }
 
     @Step
-    public void should_see_in_the_date_input(int day) {
-        Calendar now = Calendar.getInstance();
-        String currentMonth = new SimpleDateFormat("MMMM").format(now.getTime());
-        String currentYear = String.valueOf(now.get(Calendar.YEAR));
-
-        String[] splitDate = datePickerPage.getDateFromInput().split(" ");
-        String displayedMonth = splitDate[0];
-        String displayedDayWithComa = splitDate[1];
-        String displayedDay = displayedDayWithComa.substring(0, displayedDayWithComa.length() - 1);
-        String displayedYear = splitDate[2];
-
-        assertThat(displayedMonth.equals(currentMonth)
-        && displayedDay.equals(String.valueOf(day))
-        && displayedYear.equals(currentYear));
-    }
-
-    @Step
-    public void opens_autocomplete_page() {
-        autocompletePage.open();
-    }
-
-    @Step
-    public void inserts_into_the_input_field(String text) {
-        autocompletePage.insertIntoInputField(text);
-    }
-
-    @Step
-    public void clicks_from_the_autocomplete_list(String value) {
-        autocompletePage.selectFromAutocompleteList(value);
-    }
-
-    @Step
-    public void should_see_in_the_input_field(String value) {
-        assertEquals(value, autocompletePage.getInputFieldText());
-    }
-
-    @Step
-    public void opens_droppable_page() {
-        droppablePage.open();
-    }
-
-    @Step
-    public void dragAndDrops_element_into_the_area() {
-        droppablePage.dragAndDropElementIntoArea();
-    }
-
-    @Step
-    public void should_see_the_title_of_the_area_as(String title) {
-        assertEquals(title, droppablePage.getTheTitleOfDroppableArea());
+    public void seesErrorMessageWithText(String text) {
+        assertEquals(text, loginPage.getErrorMessage());
     }
 }
