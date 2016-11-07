@@ -23,7 +23,7 @@ public class LoginPage extends PageObject {
     @FindBy(css = "button[class*='loginbtn']")
     WebElementFacade loginButton;
 
-    @FindBy(css = "div.resultlogin > div", timeoutInSeconds = "60")
+    @FindBy(xpath = "//div[@class='alert alert-danger']", timeoutInSeconds = "60")
     WebElementFacade errorMessage;
 
 
