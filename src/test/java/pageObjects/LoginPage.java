@@ -42,6 +42,6 @@ public class LoginPage extends PageObject {
     }
 
     public String getErrorMessage() {
-        return new WebDriverWait(getDriver(), 60).until(ExpectedConditions.visibilityOf(errorMessage)).getText();
+        return errorMessage.waitUntilPresent().getText();
     }
 }
