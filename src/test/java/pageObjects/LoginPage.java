@@ -44,6 +44,6 @@ public class LoginPage extends PageObject {
     }
 
     public String getErrorMessage() {
-        return errorMessage.waitUntilPresent().getText();
+        return errorMessage.withTimeoutOf(15, TimeUnit.SECONDS).waitUntilPresent().getText();
     }
 }
