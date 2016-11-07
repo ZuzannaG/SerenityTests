@@ -2,7 +2,7 @@ package pageObjects;
 
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.pages.PageObject;
-import org.openqa.selenium.support.FindBy;
+import net.serenitybdd.core.annotations.findby.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -23,7 +23,7 @@ public class LoginPage extends PageObject {
     @FindBy(css = "button[class*='loginbtn']")
     WebElementFacade loginButton;
 
-    @FindBy(css = "div.resultlogin > div")
+    @FindBy(css = "div.resultlogin > div", timeoutInSeconds = "15")
     WebElementFacade errorMessage;
 
 
@@ -44,6 +44,6 @@ public class LoginPage extends PageObject {
     }
 
     public String getErrorMessage() {
-        return errorMessage.withTimeoutOf(60, TimeUnit.SECONDS).waitUntilPresent().getText();
+        return errorMessage.waitUntilPresent().getText();
     }
 }
