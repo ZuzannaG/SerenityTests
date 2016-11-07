@@ -16,14 +16,14 @@ Feature: Login
       Then I am on My Account page
       And The header contains "John Smith"
 
-      Scenario Outline: Login fail
-        When I enter "<Username>" in the username field
-        And I enter "<Password>" in the password field
-        And I click Login button
-        Then I see "Invalid Email or Password" error message
+    Scenario Outline: Login fail
+      When I enter "<Username>" in the username field
+      And I enter "<Password>" in the password field
+      And I click Login button
+      Then I see "Invalid Email or Password" error message
 
-        Examples:
-          | Username            | Password      |
-          | wrongusername       | demouser      |
-          | user@phptravels.com | wrongpassword |
-          | wrongusername       | wrongpassword |
+      Examples:
+        | Username            | Password      |
+        | wrongusername       | demouser      |
+        | user@phptravels.com | wrongpassword |
+        | wrongusername       | wrongpassword |

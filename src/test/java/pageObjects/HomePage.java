@@ -3,6 +3,7 @@ package pageObjects;
 import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 
@@ -16,6 +17,7 @@ public class HomePage extends PageObject {
     WebElementFacade loginButton;
 
     public void clickMyAccount() {
+        getDriver().manage().window().setSize(new Dimension(1280, 1024));
         myAccountButton.click();
     }
 
