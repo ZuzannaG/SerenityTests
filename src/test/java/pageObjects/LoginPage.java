@@ -6,6 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by testuser on 04/11/16.
  */
@@ -42,6 +44,6 @@ public class LoginPage extends PageObject {
     }
 
     public String getErrorMessage() {
-        return errorMessage.waitUntilPresent().getText();
+        return errorMessage.withTimeoutOf(60, TimeUnit.SECONDS).waitUntilPresent().getText();
     }
 }
