@@ -23,12 +23,14 @@ public class LoginPage extends PageObject {
     @FindBy(css = "button[class*='loginbtn']")
     WebElementFacade loginButton;
 
-    @FindBy(css = "div.resultlogin > div", timeoutInSeconds = "15")
+    @FindBy(css = "div.resultlogin > div", timeoutInSeconds = "60")
     WebElementFacade errorMessage;
 
 
     public boolean isDisplayed() {
-        return new WebDriverWait(getDriver(), 60).until(ExpectedConditions.titleIs(title));
+        withTimeoutOf(60, TimeUnit.SECONDS).waitForTitle(title);
+
+        return getTitle().equals(title);
     }
 
     public void insertIntoUsernameField(String username) {
@@ -44,6 +46,6 @@ public class LoginPage extends PageObject {
     }
 
     public String getErrorMessage() {
-        return errorMessage.withTimeoutOf(15, TimeUnit.SECONDS).waitUntilPresent().getText();
+        return errorMessage.withTimeoutOf(60, TimeUnit.SECONDS).waitUntilPresent().getText();
     }
 }
