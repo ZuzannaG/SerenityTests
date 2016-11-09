@@ -3,6 +3,8 @@ package features.steps.serenity;
 import net.thucydides.core.annotations.Step;
 import pageObjects.*;
 
+import java.util.Calendar;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -13,6 +15,7 @@ public class UserSteps {
     HomePage homePage;
     LoginPage loginPage;
     MyAccountPage myAccountPage;
+    SearchResultsPage searchResultsPage;
 
     @Step
     public void opensHomePage() {
@@ -21,12 +24,12 @@ public class UserSteps {
 
     @Step
     public void clicksMyAccount() {
-        homePage.clickMyAccount();
+        homePage.myAccountButton.click();
     }
 
     @Step
     public void clicksLogin() {
-        homePage.clickLogin();
+        homePage.loginButton.click();
     }
 
     @Step
@@ -36,17 +39,17 @@ public class UserSteps {
 
     @Step
     public void entersUsername(String username) {
-        loginPage.insertIntoUsernameField(username);
+        loginPage.usernameField.sendKeys(username);
     }
 
     @Step
     public void entersPassword(String password) {
-        loginPage.insertIntoPasswordField(password);
+        loginPage.passwordField.sendKeys(password);
     }
 
     @Step
     public void clicksLoginButton() {
-        loginPage.clickLogin();
+        loginPage.loginButton.click();
     }
 
     @Step
@@ -62,5 +65,70 @@ public class UserSteps {
     @Step
     public void seesErrorMessageWithText(String text) {
         assertEquals(text, loginPage.getErrorMessage());
+    }
+
+    @Step
+    public void clicksOnTheTab(String tabName) {
+        switch(tabName) {
+            case "Hotels" : homePage.hotelsTab.click();
+                break;
+            case "Flights" : homePage.flightsTab.click();
+                break;
+            case "Tours" : homePage.toursTab.click();
+                break;
+            case "Cars" : homePage.carsTab.click();
+                break;
+            default: throw new IllegalArgumentException("Tab name is incorrect");
+        }
+    }
+
+    @Step
+    public void insertsIntoTheCitySearchField(String city) {
+        homePage.insertIntoSearchField(0, city);
+    }
+
+    @Step
+    public void selectsTheOptionFromTheList(int index) {
+        homePage.selectFromTheCityNamesList(index - 1);
+    }
+
+    @Step
+    public void selectsAsTheStartDay(Calendar date) {
+        homePage.selectDate(0, date);
+    }
+
+    @Step
+    public void selectsAsTheEndDay(Calendar date) {
+        homePage.selectDate(1, date);
+    }
+
+    @Step
+    public void selectsAdults(int number) {
+        homePage.selectAdults(number);
+    }
+
+    @Step
+    public void selectsChildren(int number) {
+        homePage.selectChildren(number);
+    }
+
+    @Step
+    public void clicksSearch() {
+        homePage.searchButton.click();
+    }
+
+    @Step
+    public void isOnSearchResultsPage() {
+        assertTrue(searchResultsPage.isDisplayed());
+    }
+
+    @Step
+    public void seesOnlyHotelsIn(String city) {
+        assertTrue(searchResultsPage.areAllHotelsFrom(city));
+    }
+
+    @Step
+    public void seesThatTotalStayIs(String totalStay) {
+        assertTrue(searchResultsPage.totalStay.getText().equals(totalStay));
     }
 }
