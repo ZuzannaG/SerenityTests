@@ -1,16 +1,12 @@
 package features.steps;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import features.steps.serenity.UserSteps;
 import net.thucydides.core.annotations.Steps;
-
 import java.util.Calendar;
-
-import static net.thucydides.core.webdriver.ThucydidesWebDriverSupport.getDriver;
 
 /**
  * Created by testuser on 08/11/16.
@@ -19,11 +15,6 @@ public class SearchSteps {
 
     @Steps
     UserSteps user;
-
-    @Before
-    public void init() {
-        getDriver().manage().window().maximize();
-    }
 
     @Given("I am on the \"(.*)\" tab")
     public void iAmOnTheTab(String tabName) {
