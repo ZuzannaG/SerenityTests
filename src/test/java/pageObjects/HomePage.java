@@ -4,6 +4,7 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.DefaultUrl;
 import net.thucydides.core.pages.PageObject;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 
 import java.util.Calendar;
 import java.util.List;
@@ -57,6 +58,9 @@ public class HomePage extends PageObject {
     @FindBy(css="div.active input#child")
     public WebElementFacade currentChildren;
 
+    @FindBy(css = "select#tourtype")
+    public WebElementFacade tourTypes;
+
     public void insertIntoSearchField(int searchId, String value) {
         searchInputs.get(searchId).sendKeys(value);
     }
@@ -89,5 +93,10 @@ public class HomePage extends PageObject {
     public void selectChildren(int number) {
         while(Integer.valueOf(currentChildren.getValue()) < number)
             childPlusButton.click();
+    }
+
+    public void selectTourType(String type) {
+        Select tourTypesDropdown = new Select(tourTypes);
+        tourTypesDropdown.selectByVisibleText(type);
     }
 }

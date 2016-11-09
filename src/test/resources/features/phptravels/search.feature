@@ -9,7 +9,7 @@ Feature: Search
     Scenario: Searching for hotel
       Given I am on the "Hotels" tab
       When I insert "Dubai" into the city search field
-      And I select the 1st option from the list
+      And I select the 1 option from the list
       And I select tomorrow as the start date
       And I select day after tomorrow as the end date
       And I select 4 adults
@@ -17,4 +17,23 @@ Feature: Search
       And I click Search
       Then I am on the Search Results page
       And I can see that Total Stay is "1 Nights"
-      And I can see only hotels in "Dubai"
+      And I can see only results from "Dubai"
+
+    Scenario: Searching tour by city
+      Given I am on the "Tours" tab
+      When I insert "Dubai" into the city search field
+      And I select the 2 option from the list
+      And I select tomorrow as the start date
+      And I select 3 adults
+      And I click Search
+      Then I am on the Search Results page
+      And I can see only results from "Dubai"
+
+    Scenario: Searching tour by type
+      Given I am on the "Tours" tab
+      When I select tomorrow as the start date
+      And I select 3 adults
+      And I select "Holidays" as the tour type
+      And I click Search
+      Then I am on the Search Results page
+      And I can only see results with type "Holidays"

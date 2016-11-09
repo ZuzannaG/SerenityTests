@@ -123,12 +123,21 @@ public class UserSteps {
     }
 
     @Step
-    public void seesOnlyHotelsIn(String city) {
-        assertTrue(searchResultsPage.areAllHotelsFrom(city));
+    public void seesOnlyResultsFrom(String city) {
+        assertTrue(searchResultsPage.areAllResultsFrom(city));
     }
 
     @Step
     public void seesThatTotalStayIs(String totalStay) {
         assertTrue(searchResultsPage.totalStay.getText().equals(totalStay));
+    }
+
+    @Step
+    public void selectsTourType(String type) {
+        homePage.selectTourType(type);
+    }
+
+    public void seesOnlyResultsWithType(String type) {
+        assertTrue(searchResultsPage.areAllResultsWithType(type));
     }
 }

@@ -21,17 +21,29 @@ public class SearchResultsPage extends PageObject {
     @FindBy(xpath = "//small[contains(text(), 'Total Stay')]/following-sibling::span")
     public WebElementFacade totalStay;
 
+    @FindBy(css = "a.tooltip-1:first-of-type")
+    public List<WebElementFacade> resultsTourTypes;
+
     public boolean isDisplayed() {
         withTimeoutOf(60, TimeUnit.SECONDS).waitForTitle(title);
 
         return getTitle().equals(title);
     }
 
-    public boolean areAllHotelsFrom(String city) {
-
+    public boolean areAllResultsFrom(String city) {
         for (WebElementFacade element : resultsCities) {
             getDriver().switchTo().activeElement().sendKeys(Keys.ARROW_DOWN);
             if (!element.getText().equals(city))
+                return false;
+        }
+
+        return true;
+    }
+
+    public boolean areAllResultsWithType(String type) {
+        for(WebElementFacade element : resultsTourTypes) {
+            getDriver().switchTo().activeElement().sendKeys(Keys.ARROW_DOWN);
+            if(!element.getText().equals(type))
                 return false;
         }
 

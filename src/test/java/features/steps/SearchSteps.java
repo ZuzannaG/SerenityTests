@@ -1,6 +1,5 @@
 package features.steps;
 
-import cucumber.api.java.Before;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -28,7 +27,7 @@ public class SearchSteps {
         user.insertsIntoTheCitySearchField(city);
     }
 
-    @And("^I select the (\\d+)st option from the list$")
+    @And("^I select the (\\d+) option from the list$")
     public void iSelectTheStOptionFromTheList(int index) {
         user.selectsTheOptionFromTheList(index);
     }
@@ -67,13 +66,23 @@ public class SearchSteps {
         user.isOnSearchResultsPage();
     }
 
-    @And("^I can see only hotels in \"([^\"]*)\"$")
+    @And("^I can see only results from \"([^\"]*)\"$")
     public void iCanSeeOnlyHotelsIn(String city) {
-        user.seesOnlyHotelsIn(city);
+        user.seesOnlyResultsFrom(city);
     }
 
     @And("^I can see that Total Stay is \"([^\"]*)\"$")
     public void iCanSeeThatTotalStayIs(String totalStay) {
         user.seesThatTotalStayIs(totalStay);
+    }
+
+    @And("^I select \"([^\"]*)\" as the tour type$")
+    public void iSelectAsTheTourType(String type) {
+        user.selectsTourType(type);
+    }
+
+    @And("^I can only see results with type \"([^\"]*)\"$")
+    public void iCanOnlySeeResultsWithType(String type) {
+        user.seesOnlyResultsWithType(type);
     }
 }
