@@ -74,6 +74,9 @@ public class HomePage extends PageObject {
     @FindBy(css = "a.select2-choice")
     public List<WebElementFacade> carLocations;
 
+    @FindBy(css="div#select2-drop")
+    public WebElementFacade citiesDropdown;
+
     public void insertIntoSearchField(int searchId, String value) {
         searchInputs.get(searchId).sendKeys(value);
     }
@@ -90,7 +93,7 @@ public class HomePage extends PageObject {
     }
 
     public void selectStartDate(Calendar date) {
-        startDate.waitUntilClickable().click();
+        startDate.click();
         clickOnDay(date);
     }
 
@@ -135,6 +138,7 @@ public class HomePage extends PageObject {
 
     public void insertIntoLocation(int fieldId, String city) {
         carLocations.get(fieldId).click();
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(citiesDropdown);
         carLocations.get(fieldId).sendKeys(city + Keys.ENTER);
     }
 }
