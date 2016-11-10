@@ -90,7 +90,7 @@ public class HomePage extends PageObject {
     }
 
     public void selectStartDate(Calendar date) {
-        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(startDate).click();
+        startDate.waitUntilClickable().click();
         clickOnDay(date);
     }
 
