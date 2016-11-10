@@ -141,4 +141,10 @@ public class HomePage extends PageObject {
         carLocations.get(fieldId).click();
         carLocations.get(fieldId).sendKeys(city + Keys.ENTER);
     }
+
+    public boolean isSelectedLocationEqual(String city) {
+        withTimeoutOf(60, TimeUnit.SECONDS).waitForText(selectedLocation, city);
+
+        return selectedLocation.getText().equals(city);
+    }
 }

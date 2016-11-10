@@ -169,6 +169,6 @@ public class UserSteps {
 
     @Step
     public void seesThatSelectedLocationIs(String city) {
-        assertTrue(homePage.selectedLocation.getText().equals(city));
+        assertTrue(homePage.isSelectedLocationEqual(city));
     }
 }
