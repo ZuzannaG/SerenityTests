@@ -41,7 +41,8 @@ Feature: Search
   Scenario: Searching for cars
     Given I am on the "Cars" tab
     When I insert "Manchester" into the pickup location
-    And I select tomorrow as the start date
+    Then Selected location is "Manchester"
+    When I select tomorrow as the start date
     And I select "10:00" as the pickup time
     And I select day after tomorrow as the end date
     And I select "10:00" as the drop off time

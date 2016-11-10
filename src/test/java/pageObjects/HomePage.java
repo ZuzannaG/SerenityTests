@@ -7,6 +7,7 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
 
+import java.security.Key;
 import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -74,8 +75,8 @@ public class HomePage extends PageObject {
     @FindBy(css = "a.select2-choice")
     public List<WebElementFacade> carLocations;
 
-    @FindBy(css="div#select2-drop")
-    public WebElementFacade citiesDropdown;
+    @FindBy(css = "span.select2-chosen")
+    public WebElementFacade selectedLocation;
 
     public void insertIntoSearchField(int searchId, String value) {
         searchInputs.get(searchId).sendKeys(value);
@@ -138,8 +139,6 @@ public class HomePage extends PageObject {
 
     public void insertIntoLocation(int fieldId, String city) {
         carLocations.get(fieldId).click();
-        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(citiesDropdown);
-        carLocations.get(fieldId).sendKeys(city);
-        carLocations.get(fieldId).sendKeys(Keys.ENTER);
+        carLocations.get(fieldId).sendKeys(city + Keys.ENTER);
     }
 }

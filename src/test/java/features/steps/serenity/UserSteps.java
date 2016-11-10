@@ -166,4 +166,9 @@ public class UserSteps {
     public void selectsAsTheCheckOutDate(Calendar date) {
         homePage.selectDate(1, date);
     }
+
+    @Step
+    public void seesThatSelectedLocationIs(String city) {
+        assertTrue(homePage.selectedLocation.getText().equals(city));
+    }
 }

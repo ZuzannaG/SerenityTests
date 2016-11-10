@@ -115,4 +115,9 @@ public class SearchSteps {
         date.add(Calendar.DATE, 2);
         user.selectsAsTheCheckOutDate(date);
     }
+
+    @Then("^Selected location is \"([^\"]*)\"$")
+    public void selectedLocationIs(String city) {
+        user.seesThatSelectedLocationIs(city);
+    }
 }
