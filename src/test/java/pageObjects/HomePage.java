@@ -90,12 +90,12 @@ public class HomePage extends PageObject {
     }
 
     public void selectStartDate(Calendar date) {
-        startDate.click();
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(startDate).click();
         clickOnDay(date);
     }
 
     public void selectEndDate(Calendar date) {
-        endDate.click();
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(endDate).click();
         clickOnDay(date);
     }
 
@@ -128,6 +128,7 @@ public class HomePage extends PageObject {
     }
 
     public void selectTime(int dropdownId, String time) {
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(times);
         Select timeDropdown = new Select(times.get(dropdownId));
         timeDropdown.selectByVisibleText(time);
     }
