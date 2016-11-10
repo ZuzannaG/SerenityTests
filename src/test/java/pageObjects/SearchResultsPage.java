@@ -41,9 +41,9 @@ public class SearchResultsPage extends PageObject {
     }
 
     public boolean areAllResultsWithType(String type) {
-        for(WebElementFacade element : resultsTourTypes) {
+        for (WebElementFacade element : resultsTourTypes) {
             getDriver().switchTo().activeElement().sendKeys(Keys.ARROW_DOWN);
-            if(!element.getText().equals(type))
+            if (!element.getText().equals(type))
                 return false;
         }
 

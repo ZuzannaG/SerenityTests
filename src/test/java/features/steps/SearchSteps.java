@@ -1,5 +1,6 @@
 package features.steps;
 
+import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -84,5 +85,34 @@ public class SearchSteps {
     @And("^I can only see results with type \"([^\"]*)\"$")
     public void iCanOnlySeeResultsWithType(String type) {
         user.seesOnlyResultsWithType(type);
+    }
+
+    @And("^I select \"([^\"]*)\" as the pickup time$")
+    public void iSelectAsThePickupTime(String time) {
+        user.selectsTime(0, time);
+    }
+
+    @And("^I select \"([^\"]*)\" as the drop off time$")
+    public void iSelectAsTheDropOffTime(String time) {
+        user.selectsTime(1, time);
+    }
+
+    @When("^I insert \"([^\"]*)\" into the pickup location$")
+    public void iInsertIntoThePickupLocation(String city) {
+        user.insertsIntoThePickupLocation(city);
+    }
+
+    @And("^I select tomorrow as the check in date$")
+    public void iSelectTomorrowAsTheCheckInDate() {
+        Calendar date = Calendar.getInstance();
+        date.add(Calendar.DATE, 1);
+        user.selectsAsTheCheckInDate(date);
+    }
+
+    @And("^I select day after tomorrow as the checkout date$")
+    public void iSelectDayAfterTomorrowAsTheCheckoutDate() {
+        Calendar date = Calendar.getInstance();
+        date.add(Calendar.DATE, 2);
+        user.selectsAsTheCheckOutDate(date);
     }
 }

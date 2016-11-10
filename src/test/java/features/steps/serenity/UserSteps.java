@@ -69,16 +69,21 @@ public class UserSteps {
 
     @Step
     public void clicksOnTheTab(String tabName) {
-        switch(tabName) {
-            case "Hotels" : homePage.hotelsTab.click();
+        switch (tabName) {
+            case "Hotels":
+                homePage.hotelsTab.click();
                 break;
-            case "Flights" : homePage.flightsTab.click();
+            case "Flights":
+                homePage.flightsTab.click();
                 break;
-            case "Tours" : homePage.toursTab.click();
+            case "Tours":
+                homePage.toursTab.click();
                 break;
-            case "Cars" : homePage.carsTab.click();
+            case "Cars":
+                homePage.carsTab.click();
                 break;
-            default: throw new IllegalArgumentException("Tab name is incorrect");
+            default:
+                throw new IllegalArgumentException("Tab name is incorrect");
         }
     }
 
@@ -94,12 +99,12 @@ public class UserSteps {
 
     @Step
     public void selectsAsTheStartDay(Calendar date) {
-        homePage.selectDate(0, date);
+        homePage.selectStartDate(date);
     }
 
     @Step
     public void selectsAsTheEndDay(Calendar date) {
-        homePage.selectDate(1, date);
+        homePage.selectEndDate(date);
     }
 
     @Step
@@ -137,7 +142,28 @@ public class UserSteps {
         homePage.selectTourType(type);
     }
 
+    @Step
     public void seesOnlyResultsWithType(String type) {
         assertTrue(searchResultsPage.areAllResultsWithType(type));
+    }
+
+    @Step
+    public void selectsTime(int dropdownId, String time) {
+        homePage.selectTime(dropdownId, time);
+    }
+
+    @Step
+    public void insertsIntoThePickupLocation(String city) {
+        homePage.insertIntoLocation(0, city);
+    }
+
+    @Step
+    public void selectsAsTheCheckInDate(Calendar date) {
+        homePage.selectDate(0, date);
+    }
+
+    @Step
+    public void selectsAsTheCheckOutDate(Calendar date) {
+        homePage.selectDate(1, date);
     }
 }
