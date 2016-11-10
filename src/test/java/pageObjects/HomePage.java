@@ -138,8 +138,10 @@ public class HomePage extends PageObject {
     }
 
     public void insertIntoLocation(int fieldId, String city) {
+        withTimeoutOf(60, TimeUnit.SECONDS).waitFor(carLocations);
         carLocations.get(fieldId).click();
-        carLocations.get(fieldId).sendKeys(city + Keys.ENTER);
+        carLocations.get(fieldId).sendKeys(city);
+        carLocations.get(fieldId).sendKeys(Keys.ENTER);
     }
 
     public boolean isSelectedLocationEqual(String city) {
