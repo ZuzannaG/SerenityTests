@@ -139,6 +139,7 @@ public class HomePage extends PageObject {
     public void insertIntoLocation(int fieldId, String city) {
         carLocations.get(fieldId).click();
         withTimeoutOf(60, TimeUnit.SECONDS).waitFor(citiesDropdown);
-        carLocations.get(fieldId).sendKeys(city + Keys.ENTER);
+        carLocations.get(fieldId).sendKeys(city);
+        carLocations.get(fieldId).sendKeys(Keys.ENTER);
     }
 }
